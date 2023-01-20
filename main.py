@@ -56,8 +56,9 @@ def main() -> str:
 
     with open("data.json", "r", encoding="utf-8") as webhook_data:
         webhook_data = json.load(webhook_data)
-        if "errors" in webhook_data:
-            return "API Errors, process could not resolve"
+
+    if "errors" in webhook_data:
+        return "API Errors, process could not resolve"
 
     if "last_id.json" not in os.listdir():
         with open("last_id.json", mode="w") as last_id:
@@ -86,6 +87,6 @@ def main() -> str:
         notify_push(template(url, keywords, hashtags))
     return "completed"
 
-
-result = main()
-print(result)
+if __name__ == "__main__":
+    result = main()
+    print(result)
